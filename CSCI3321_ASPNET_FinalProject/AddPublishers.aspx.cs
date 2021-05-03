@@ -9,7 +9,7 @@ using System.Web.Configuration;
 
 namespace CSCI3321_ASPNET_FinalProject
 {
-    public partial class AddBook : System.Web.UI.Page
+    public partial class AddPublishers : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -24,7 +24,7 @@ namespace CSCI3321_ASPNET_FinalProject
 
             cmd.Connection = conn;
 
-            cmd.CommandText = " INSERT INTO Books VALUES ('" + txtTitle.Text + "'," + drpAuthor.SelectedValue + ", " + txtPrice.Text + ", '" + txtDatePub.Text + "', " + drpPublisher.SelectedValue + " , " + drpGenre.SelectedValue + ", " + txtWordCount.Text + ")";
+            cmd.CommandText = " INSERT INTO Publishers VALUES ('" + txtPublisherName.Text + "','" + txtAddress.Text + "', '" + txtCity.Text + "', '" + txtPostalCode.Text + "','" + txtCountry.Text + "','" + txtPhone.Text + "')";
             conn.Open();
             cmd.ExecuteNonQuery();
             conn.Close();
