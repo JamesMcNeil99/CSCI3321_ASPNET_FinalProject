@@ -28,7 +28,7 @@ namespace CSCI3321_ASPNET_FinalProject
             // 2. Create a SqlCommand object using the above connection object
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = conn;
-            cmd.CommandText = "Your SQL statements go there";
+            cmd.CommandText = "Select * From Books INNER JOIN Genres ON Books.GenreID = Genres.GenreID INNER JOIN Authors ON Books.AuthorID = AUthors.AuthorID INNER JOIN Publishers ON Books.PublisherID = Publishers.PublisherID; ";
 
             // 3. Open the connection and execute the command
             // store the returned data in a SqlDataReader object
@@ -39,7 +39,38 @@ namespace CSCI3321_ASPNET_FinalProject
             // then loop through each record to build the table to display the books
             if (reader.HasRows)
             {
-                // Build the table 
+                while (reader.Read())
+                {
+                    TableRow tr = new TableRow();
+                    TableCell tc = new TableCell();
+                    tc.Text = reader["Title"].ToString();
+                    tr.Cells.Add(tc);
+
+                    tc = new TableCell();
+                    tc.Text = reader["FirstName"].ToString() + " " + reader["LastName"].ToString();
+                    tr.Cells.Add(tc);
+
+                    tc = new TableCell();
+                    tc.Text = reader["Price"].ToString();
+                    tr.Cells.Add(tc);
+
+                    tc = new TableCell();
+                    String pDate = reader["PublishDate"].ToString();
+                    pDate = pDate.Split(' ')[0];
+                    tc.Text = pDate;
+                    tr.Cells.Add(tc);
+
+                    tc = new TableCell();
+                    tc.Text = reader["PublisherName"].ToString();
+                    tr.Cells.Add(tc);
+
+                    tc = new TableCell();
+                    tc.Text = reader["GenreName"].ToString();
+                    tr.Cells.Add(tc);
+
+
+                    tblBooks.Rows.Add(tr);
+                }
             }
 
         }
