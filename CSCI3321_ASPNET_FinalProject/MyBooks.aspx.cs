@@ -72,6 +72,7 @@ namespace CSCI3321_ASPNET_FinalProject
                     tblBooks.Rows.Add(tr);
                 }
             }
+            conn.Close();
 
         }
     }
